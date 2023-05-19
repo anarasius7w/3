@@ -1,0 +1,37 @@
+string Encrypt(string text, int shift) {
+    string encryptedText = "";
+
+    foreach (char c in text) {
+        if (char.IsLetter(c)) {
+            char encryptedChar = (char)(((c - 'a') + shift) % 26 + 'a');
+            encryptedText += encryptedChar;
+        } else {
+            encryptedText += c;
+        }
+    }
+
+    return encryptedText;
+}
+
+string Decrypt(string text, int shift) {
+    string decryptedText = "";
+
+    foreach (char c in text) {
+        if (char.IsLetter(c)) {
+            char decryptedChar = (char)(((c - 'a') - shift + 26) % 26 + 'a');
+            decryptedText += decryptedChar;
+        } else {
+            decryptedText += c;
+        }
+    }
+
+    return decryptedText;
+}
+
+string message = "hello world";
+int shift = 3;
+string encryptedMessage = Encrypt(message, shift);
+string decryptedMessage = Decrypt(encryptedMessage, shift);
+Console.WriteLine("Encrypted: " + encryptedMessage);
+Console.WriteLine("Decrypted: " + decryptedMessage);
+
